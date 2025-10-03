@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Generate Workout Split{% endblock %}
+
+{% block content %}
+    <div class="page-container">
+        <div class="split-form-container">
+            <h2 class="split-title">Generate Custom Workout Split</h2>
+
+            <form class="split-form" method="POST">
+                {{ form.hidden_tag() }}
+                <label class="split-label" for="days">How many days per week do you want to train?</label>
+                {{ form.days_per_week(class="split-input") }}
+                <button class="split-button" type="submit" value="generate" name="action">Generate Split</button>
+            </form>
+        </div>
+
+        {% if latest_split %}
+            <div class="split-result">
+                <h3 class="split-result-title">Your Custom Workout Split</h3>
+                <form class="split-form" method="POST">
+                    <textarea name="split" class="split-textarea"rows="7" required>{{ latest_split["split"] if latest_split else "" }}</textarea>
+                    <button class="split-button" type="submit" value="save" name="action">Save Split</button>
+                </form>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="bmi-calculator-container">
+    <h2 class="bmi-calculator-title">BMI Calculator & Daily Calorie Estimator</h2>
+
+    <form method="POST" action="{{ url_for('health') }}" enctype="multipart/form-data" class="bmi-calculator-form">
+        <div class="bmi-form-group">
+            <label for="weight" class="bmi-form-label">Weight</label>
+            <input type="number" name="weight" id="weight" class="bmi-form-input" required>
+
+            <div class="radio-group">
+                <label class="radio-label">
+                    <input type="radio" name="weight_unit" value="kg" checked>
+                    kg
+                </label>
+                <label class="radio-label">
+                    <input type="radio" name="weight_unit" value="lbs">
+                    lbs
+                </label>
+            </div>
+        </div>
+
+        <div class="bmi-form-group">
+            <label for="height" class="bmi-form-label">Height</label>
+            <input type="float" name="height" id="height" class="bmi-form-input" required>
+
+            <div class="radio-group">
+                <label class="radio-label">
+                    <input type="radio" name="height_unit" value="m" checked>
+                    meters
+                </label>
+                <label class="radio-label">
+                    <input type="radio" name="height_unit" value="ft">
+                    feet
+                </label>
+            </div>
+        </div>
+
+        <div class="bmi-form-group">
+            <label for="age" class="bmi-form-label">Age</label>
+            <input type="number" name="age" id="age" class="bmi-form-input" required>
+        </div>
+
+        <div class="bmi-form-group">
+            <label for="target_weight" class="bmi-form-label">Target Weight</label>
+            <input type="number" name="target_weight" id="target_weight" class="bmi-form-input" required>
+        </div>
+
+        <div class="bmi-form-group">
+            <button type="submit" class="bmi-form-button">Calculate</button>
+        </div>
+    </form>
+
+    {% if bmi %}
+    <div class="results">
+        <h3>Your Results</h3>
+        <p><strong>BMI:</strong> {{ bmi | round(2) }}</p>
+        <p><strong>Daily Calories to Maintain Weight:</strong> {{ daily_calories | round(0) }} kcal</p>
+        <p><strong>Calories Needed to Reach Target Weight:</strong> {{ target_calories | round(0) }} kcal</p>
+    </div>
+    {% endif %}
+
+    <hr>
+
+    <h3 class="bmi-calculator-title">Upload Progress Picture</h3>
+    <form method="POST" enctype="multipart/form-data" action="{{ url_for('upload_picture') }}" class="bmi-calculator-form">
+        <div class="bmi-form-group">
+            <input type="file" name="progress_picture" accept="image/*" class="bmi-form-input" required>
+        </div>
+        <div class="bmi-form-group">
+            <button type="submit" class="bmi-form-button">Upload</button>
+        </div>
+    </form>
+
+    {% if user_images %}
+    <div class="progress-gallery">
+        <h3 class="bmi-calculator-title">Progress Pictures</h3>
+        {% for image in user_images %}
+        <div class="progress-item">
+            <img src="{{ image }}" alt="Progress Picture" class="progress-image">
+            <form method="POST" action="{{ url_for('delete_picture') }}">
+                <input type="hidden" name="image_path" value="{{ image }}">
+                <button type="submit" class="delete-button">Delete</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+

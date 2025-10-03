@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Sign Up - Gym Workout Tracker{% endblock %}
+
+{% block content %}
+
+<h2 class="login-title">Sign Up</h2>
+<form method="POST" action="" class="login-form" novalidate>
+    {{ form.hidden_tag() }}
+    
+    <div class="form-group">
+        <label for="username" class="form-label">{{ form.username.label.text }}</label>
+        {{ form.username(id="username", class="form-input", size=32) }}
+        {% for error in form.username.errors %}
+            <div class="form-error">{{ error }}</div>
+        {% endfor %}
+    </div>
+    
+    <div class="form-group">
+        <label for="password" class="form-label">{{ form.password.label.text }}</label>
+        {{ form.password(id="password", class="form-input", size=32) }}
+        {% for error in form.password.errors %}
+            <div class="form-error">{{ error }}</div>
+        {% endfor %}
+    </div>
+    
+    <div class="form-group">
+        <label for="confirm_password" class="form-label">{{ form.confirm_password.label.text }}</label>
+        {{ form.confirm_password(id="confirm_password", class="form-input", size=32) }}
+        {% for error in form.confirm_password.errors %}
+            <div class="form-error">{{ error }}</div>
+        {% endfor %}
+    </div>
+    
+    <div class="form-group">
+        {{ form.submit(class="form-button") }}
+    </div>
+
+    <div class="form-link">
+        <p>Already have an account? <a href="{{ url_for('login') }}">Log in here</a></p>
+    </div>
+</form>
+
+{% endblock %}

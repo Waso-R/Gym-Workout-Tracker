@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Gym Workout Tracker{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <a href="{{ url_for('index') }}">Workout Tracker</a>
+        </div>
+
+        <div class="navbar-links">
+            <ul>
+                {% if g.user %}
+                    <li><a href="{{ url_for('log_workout') }}" class="nav-link {% if request.endpoint == 'log_workout' %}active{% endif %}">Log Workout</a></li>
+                    <li><a href="{{ url_for('generate_split') }}" class="nav-link {% if request.endpoint == 'generate_split' %}active{% endif %}">Generate Split</a></li>
+                    <li><a href="{{ url_for('health') }}" class="nav-link {% if request.endpoint == 'health' %}active{% endif %}">Health</a></li>
+                    <li><a href="{{ url_for('personal_records') }}" class="nav-link {% if request.endpoint == 'personal_records' %}active{% endif %}">PR</a></li>
+                    <li><a href="{{ url_for('leaderboard') }}" class="nav-link {% if request.endpoint == 'leaderboard' %}active{% endif %}">Leaderboard</a></li>
+                    <li><a href="{{ url_for('change_password') }}" class="nav-link {% if request.endpoint == 'change_password' %}active{% endif %}">Settings</a></li>
+                    <li><a href="{{ url_for('logout') }}" class="nav-link logout-link">Logout</a></li>                
+                {% else %}
+                    <li><a href="{{ url_for('login') }}" class="nav-link {% if request.endpoint == 'login' %}active{% endif %}">Login</a></li>
+                    <li><a href="{{ url_for('signup') }}" class="nav-link {% if request.endpoint == 'signup' %}active{% endif %}">Sign Up</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+
+</body>
+</html>

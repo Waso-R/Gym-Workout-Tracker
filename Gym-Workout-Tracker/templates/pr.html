@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="pr-container">
+    <h2 class="pr-title">Personal Records</h2>
+
+    <form method="POST" class="pr-form">
+        <div class="pr-input-group">
+            <label for="exercise">Exercise:</label>
+            <select name="exercise" id="exercise" class="pr-select" required>
+                <option value="Squat">Squat</option>
+                <option value="Bench Press">Bench Press</option>
+                <option value="Deadlift">Deadlift</option>
+            </select>
+        </div>
+
+        <div class="pr-input-group">
+            <label for="weight">Weight (kg):</label>
+            <input type="number" name="weight" id="weight" class="pr-input" required>
+        </div>
+
+        <button type="submit" class="pr-button">Save Personal Best</button>
+    </form>
+
+    <div class="pr-results">
+        <h3>Latest Personal Bests</h3>
+        <table class="pr-table">
+            <thead>
+                <tr>
+                    <th>Exercise</th>
+                    <th>Weight (kg)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for exercise, weight in records.items() %}
+                <tr class="{% if exercise == strongest_lift %}strongest{% endif %}">
+                    <td>{{ exercise }}</td>
+                    <td>{{ weight }} kg</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="pr-summary">
+            <p><strong>Total SBD:</strong> {{ total_sbd }} kg</p>
+            <p><strong>Strongest Lift:</strong> <span class="highlight">{{ strongest_lift }}</span></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

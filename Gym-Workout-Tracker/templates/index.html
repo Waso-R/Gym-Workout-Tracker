@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome - Gym Workout Tracker{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <div class="content-container">
+        <h1>Track Your Fitness Journey!</h1>
+        <p>Log workouts, set personal records, and monitor your progress.</p>
+        {% if g.user %}
+            <a href="{{ url_for('log_workout') }}" class="btn">log a workout</a>
+        {% else %}
+            <a href="{{ url_for('signup') }}" class="btn">Get Started</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

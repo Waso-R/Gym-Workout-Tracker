@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="workout-page">
+    <div class="workout-container">
+        <h2 class="workout-title">Log Your Workout</h2>
+
+        <form method="POST" action="{{ url_for('log_workout', date=selected_date) }}" class="workout-log-form">
+            {{ form.hidden_tag() }}
+
+            <div class="workout-form-group">
+                <label for="workout_type" class="workout-form-label">{{ form.workout_type.label.text }}</label>
+                {{ form.workout_type(id="workout_type", class="workout-form-input") }}
+                {% for error in form.workout_type.errors %}
+                <div class="workout-form-error">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="workout-form-group">
+                <label for="reps" class="workout-form-label">{{ form.reps.label.text }}</label>
+                {{ form.reps(id="reps", class="workout-form-input") }}
+                {% for error in form.reps.errors %}
+                <div class="workout-form-error">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="workout-form-group">
+                <label for="sets" class="workout-form-label">{{ form.sets.label.text }}</label>
+                {{ form.sets(id="sets", class="workout-form-input") }}
+                {% for error in form.sets.errors %}
+                <div class="workout-form-error">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="workout-form-group">
+                <label for="weight" class="workout-form-label">{{ form.weight.label.text }}</label>
+                {{ form.weight(id="weight", class="workout-form-input") }}
+                {% for error in form.weight.errors %}
+                <div class="workout-form-error">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="workout-form-group">
+                {{ form.submit(class="workout-form-button") }}
+            </div>
+        </form>
+    </div>
+
+    <div class="workout-container">
+        <h2 class="workout-title">Workout Calendar <br /> {{ month }}/{{ year }}</h2>
+        <table class="calendar">
+            <thead>
+                <tr>
+                    <th>Mon</th>
+                    <th>Tue</th>
+                    <th>Wed</th>
+                    <th>Thu</th>
+                    <th>Fri</th>
+                    <th>Sat</th>
+                    <th>Sun</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for week in calendar_data %}
+                <tr>
+                    {% for day in week %}
+                        {% if day == 0 %}
+                            <td></td>
+                        {% else %}
+                            {% set date_str = "%04d-%02d-%02d" % (year, month, day) %}
+                            {% if date_str in workout_dates %}
+                                <td class="workout-day">
+                                    <a href="{{ url_for('log_workout', date=date_str) }}">{{ day }}</a>
+                                </td>
+                            {% else %}
+                                <td><a href="{{ url_for('log_workout', date=date_str) }}">{{ day }}</a></td>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="workout-container">
+        <h2 class="workout-title">Workouts for <br /> {{ selected_date }}</h2>
+        {% if workouts %}
+            <table class="workout-history-table">
+                <thead>
+                    <tr>
+                        <th>Workout</th>
+                        <th>Sets</th>
+                        <th>Reps</th>
+                        <th>Weight (kg)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for workout in workouts %}
+                    <tr>
+                        <td>{{ workout.workout_type }}</td>
+                        <td>{{ workout.sets }}</td>
+                        <td>{{ workout.reps }}</td>
+                        <td>{{ workout.weight }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No workouts logged for this day.</p>
+        {% endif %}
+    </div>
+
+<div class="workout-container">
+    <form action="{{ url_for('delete_recent_workout', date=selected_date) }}" method="post" class="delete-recent-form">
+        <button type="submit" class="delete-recent-button">Delete Recent Entry</button>
+    </form>
+</div>
+
+</div>
+{% endblock %}
