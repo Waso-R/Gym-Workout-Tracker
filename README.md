@@ -4,10 +4,10 @@
 
 ## 📋 Table of Contents
 
-- 🔍 [Overview](#overview)
-- 🧰 [Tech Stack](#tech-stack)
-- ⚙️ [Installation](#installation)
-- 🖼️ [Screenshots](#screenshots)
+- 🔍 [Overview]
+- 🧰 [Tech Stack]
+- ⚙️ [Installation]
+- 🖼️ [Screenshots]
 
 ---
 
