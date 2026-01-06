@@ -1,35 +1,35 @@
-<h1 align="center">🏋️‍♂️ Gym Workout Tracker</h1>
+<h1 align="center"> Gym Workout Tracker</h1>
 
 ---
 
-## 📋 Table of Contents
+##  Table of Contents
 
-- 🔍 [Overview]
-- 🧰 [Tech Stack]
-- ⚙️ [Installation]
-- 🖼️ [Screenshots]
+-  [Overview]
+-  [Tech Stack]
+-  [Installation]
+-  [Screenshots]
 
 ---
 
-## 💡 Overview
+##  Overview
 
 The **Gym Workout Tracker** is a full-featured web application that allows users to take complete control of their fitness journey — from workout tracking to progress visualization.
 
 Developed as part of a **university coursework project**, this app provides an all-in-one fitness dashboard where users can:
 
-- 🧍‍♂️ **Create accounts and securely log in** with password protection.
-- 📅 **Track daily workouts** by selecting specific dates on a built-in calendar — all logs are saved in the database and displayed dynamically.
-- 🏋️‍♀️ **Build a custom workout split**, choose the number of training days per week, and edit each workout to match personal preferences.
-- ❤️ **Monitor health stats** such as BMI through an interactive health form.
-- 📸 **Upload and view gym progress photos** for future reference.
-- 🏆 **Record personal records (PRs)** for powerlifting exercises — **Squat, Bench Press, and Deadlift** — and compare results on a live **leaderboard** with other users.
-- ⚙️ **Manage account settings**, including password updates and profile modifications.
+-  **Create accounts and securely log in** with password protection.
+-  **Track daily workouts** by selecting specific dates on a built-in calendar — all logs are saved in the database and displayed dynamically.
+-  **Build a custom workout split**, choose the number of training days per week, and edit each workout to match personal preferences.
+-  **Monitor health stats** such as BMI through an interactive health form.
+-  **Upload and view gym progress photos** for future reference.
+-  **Record personal records (PRs)** for powerlifting exercises — **Squat, Bench Press, and Deadlift** — and compare results on a live **leaderboard** with other users.
+-  **Manage account settings**, including password updates and profile modifications.
 
 This app serves as a complete example of how a modern web application can combine fitness tracking, social features, and data visualization into a seamless experience.
 
 ---
 
-## 🧰 Tech Stack
+##  Tech Stack
 
 <div align="center">
 
@@ -43,7 +43,7 @@ This app serves as a complete example of how a modern web application can combin
 
 ---
 
-## ⚙️ Installation
+##  Installation
 
 Follow these steps to run the **Gym Workout Tracker** locally:
 
@@ -66,7 +66,7 @@ python app.py
 
 ---
 
-## 🖼️ Screenshots
+##  Screenshots
 
 ### Home Page
 ![Home Page](Workout-tracker-Preview/Home-Page.png)
